@@ -37,7 +37,7 @@ public class Minesweeper {
                int[][] visitedMatrix=new int[mineSweeperBoard.length][mineSweeperBoard[0].length];
                playerBoard[row][column]=' ';
 
-               bfs(row,column,playerBoard, mineSweeperBoard,visitedMatrix);
+               revealWhiteSpaces(row,column,playerBoard, mineSweeperBoard,visitedMatrix);
                return true;
            }
 
@@ -69,10 +69,11 @@ public class Minesweeper {
                    System.out.print(mineSweeperBoard[row][column]+" ");
                }
                System.out.println();
+
            }
            System.out.println("You won the game");
        }
-       public void bfs(int row,int column,char[][] playerBoard,char[][] mineSweeperBoard,int[][] visitedMatrix)
+       public void revealWhiteSpaces(int row, int column, char[][] playerBoard, char[][] mineSweeperBoard, int[][] visitedMatrix)
        {
            visitedMatrix[row][column]=1;
            Queue<Pair<Integer,Integer>> reveal=new LinkedList<>();
