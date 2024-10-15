@@ -20,7 +20,22 @@ public class Minesweeper {
                 {'1', '2', 'M', '1', '0', '1', 'M', '1', '1', '1', '2', 'M'},
                 {'M', '2', '1', '1', '0', '1', '2', 'M', '3', '2', '1', '1'}
        };
-        public boolean validate(int row,int column,char[][] playerBoard)
+        private int boardlength;
+        private int bombcount;
+        public Minesweeper()
+        {
+            boardlength= mineSweeperBoard.length;
+            bombcount=17;
+        }
+        public int getBombCount()
+        {
+            return bombcount;
+        }
+        public int getBoardLength()
+        {
+            return boardlength;
+        }
+        public boolean validateMove(int row,int column,char[][] playerBoard)
        {
            if(mineSweeperBoard[row][column]=='M')
            {

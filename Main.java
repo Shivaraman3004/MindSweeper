@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scan=new Scanner(System.in);
+        Scanner inputGetter=new Scanner(System.in);
         Player player=new Player();
-        player.start(scan);
+        player.start(inputGetter);
     }
 }

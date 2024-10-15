@@ -10,8 +10,8 @@ public class Player {
     Player()
     {
         game=new Minesweeper();
-        flagCount =17;
-        playerBoard =new char[12][12];
+        flagCount = game.getBombCount();
+        playerBoard =new char[game.getBoardLength()][game.getBoardLength()];
         for(int row = 0; row< playerBoard.length; row++)
         {
             for (int column = 0; column< playerBoard[0].length; column++)
@@ -30,7 +30,7 @@ public class Player {
         }
         System.out.println("Flag Count:"+ flagCount);
     }
-    public void start(Scanner scan)
+    public void start(Scanner inputGetter)
     {
         boolean isRunning=true;
         while (isRunning)
@@ -40,16 +40,16 @@ public class Player {
             System.out.println("Enter 2 to Discover places");
             System.out.println("Enter 3 to Exit");
             System.out.println("Enter your choice:");
-            int userChoice=scan.nextInt();
+            int userChoice=inputGetter.nextInt();
             if(userChoice==1)
             {
-                isRunning= flagOperations(scan);
+                isRunning= flagOperations(inputGetter);
 
             }
 
             else if(userChoice==2)
             {
-                isRunning= discoverPlaces(scan);
+                isRunning= discoverPlaces(inputGetter);
             }
             else if(userChoice==3)
             {
@@ -62,12 +62,12 @@ public class Player {
             }
         }
     }
-    public boolean flagOperations(Scanner scan)
+    public boolean flagOperations(Scanner inputGetter)
     {
         System.out.println("Enter row:");
-        int row=scan.nextInt();
+        int row=inputGetter.nextInt();
         System.out.println("Enter column:");
-        int column=scan.nextInt();
+        int column=inputGetter.nextInt();
         if(row>= playerBoard.length||column>= playerBoard.length||row<0||column<0)
         {
             System.out.println("Invalid Move");
@@ -91,12 +91,12 @@ public class Player {
         return true;
     }
 
-    public boolean discoverPlaces(Scanner scan)
+    public boolean discoverPlaces(Scanner inputGetter)
     {
         System.out.println("Enter row:");
-        int row=scan.nextInt();
+        int row=inputGetter.nextInt();
         System.out.println("Enter column:");
-        int column=scan.nextInt();
+        int column=inputGetter.nextInt();
         if(row>= playerBoard.length||column>= playerBoard.length||row<=-1||column<=-1)
         {
             System.out.println("Invalid Move");
@@ -105,7 +105,7 @@ public class Player {
         {
             System.out.println("Sorry we cannot find any place.Flag is there");
 
-        } else if (game.validate(row,column, playerBoard))
+        } else if (game.validateMove(row,column, playerBoard))
         {
             System.out.println("working");
         }
